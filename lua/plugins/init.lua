@@ -4,10 +4,7 @@ local default_plugins = {
 
   "nvim-lua/plenary.nvim",
 
-  -- nvchad plugins
-  {
-    'github/copilot.vim', lazy = false
-  },
+  -- nvchad plugins 
   {
     'prettier/vim-prettier', lazy = false
   },
@@ -246,10 +243,25 @@ local default_plugins = {
       -- load extensions
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
-      end
+      end 
     end,
   },
-
+  -- VSCODE like rename
+  {
+    "filipdutescu/renamer.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function()
+      return require('plugins.configs.renamer')
+    end,
+    config = function(_, opts)
+      require('renamer').setup(opts)
+    end
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",

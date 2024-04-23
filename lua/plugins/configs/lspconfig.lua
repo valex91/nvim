@@ -43,9 +43,11 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 require("lspconfig").tsserver.setup {
   on_attach = on_attach,
-  capabilities = capabilities,
+  capabilities = lsp_capabilities,
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

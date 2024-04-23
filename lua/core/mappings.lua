@@ -32,7 +32,8 @@ M.general = {
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
-
+    -- custom renamer
+    ["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>' }, 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
     -- empty mode is same as using <cmd> :map
@@ -172,12 +173,12 @@ M.lspconfig = {
       "LSP definition type",
     },
 
-    ["<leader>ra"] = {
-      function()
-        require("nvchad.renamer").open()
-      end,
-      "LSP rename",
-    },
+    -- ["<leader>ra"] = {
+    --   function()
+    --     require("nvchad.renamer").open()
+    --   end,
+    --   "LSP rename",
+    -- },
 
     ["<leader>ca"] = {
       function()
@@ -287,6 +288,7 @@ M.telescope = {
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "My git status"}, 
 
     -- pick a hidden term
     ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
