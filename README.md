@@ -13,21 +13,7 @@
 You need a few things installed globally on your machine before you can enjoy the entire setup:
 
 ```sh
-npm i typescript typescript-language-server prettier --location=global
-```
-
-With this out of the way, back up your current `nvim` configuration:
-
-```sh
-cd ~/.config
-mv nvim nvim_backup
-mv ~/.local/share/nvim nvim_backup
-```
-
-Then clone this repo:
-
-```sh
-git clone git@github.com:rosnovsky/nvim
+npm i -g typescript typescript-language-server prettier eslint
 ```
 
 ## First Run
@@ -46,6 +32,8 @@ In order to make `prettier` work, type this in `NORMAL` mode (remember? `ESC` ta
 
 ```vim
 :call coc#util#install()
+:CocInstall coc-eslint
+:CocInstall coc-tsserver
 ```
 
 This command installs everything necessary for `prettier` to work. After it's all done, restart `nvim` one last time.
