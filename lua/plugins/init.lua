@@ -257,10 +257,15 @@ local default_plugins = {
       require('renamer').setup(opts)
     end
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
+ {
+    'MunifTanjim/eslint.nvim',
+    dependencies = { 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
+    opts = function()
+      return require('plugins.configs.eslint')
+    end,
+    config = function (_, opts)
+      require('eslint').setup(opts)
+    end
   },
   -- Only load whichkey after all the gui
   {

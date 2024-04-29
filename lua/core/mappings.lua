@@ -151,7 +151,7 @@ M.lspconfig = {
       end,
       "LSP hover",
     },
-
+ 
     ["gi"] = {
       function()
         vim.lsp.buf.implementation()
@@ -179,7 +179,7 @@ M.lspconfig = {
     --   end,
     --   "LSP rename",
     -- },
-
+    --
     ["<leader>ca"] = {
       function()
         vim.lsp.buf.code_action()
@@ -284,6 +284,7 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>fd"] = {"<cmd> CocCommand tsserver.goToSourceDefinition <CR>", 'go to TS def'},
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },

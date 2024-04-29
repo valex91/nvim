@@ -71,6 +71,16 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("CursorHold", {
+  group = vim.api.nvim_create_augroup("ts_autofix", { clear = true }),
+  desc = "TSAutoFix",
+  pattern = { "*.ts", "*.tsx" },
+  callback = function()
+    vim.cmd("CocCommand tsserver.executeAutofix")
+    vim.cmd("CocCommand eslint.executeAutofix")
+  end,
+})
+
 -- reload some chadrc options on-save
 autocmd("BufWritePost", {
   pattern = vim.tbl_map(function(path)
