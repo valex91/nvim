@@ -1,5 +1,5 @@
 local options = {
-  ensure_installed = { "lua-language-server", "tsserver", "eslint" }, -- not an option from mason.nvim
+  ensure_installed = { "lua-language-server", "eslint-lsp", "typescript-language-server", "graphql-language-service-cli" }, -- not an option from mason.nvim
 
   PATH = "skip",
 

@@ -131,17 +131,15 @@ local default_plugins = {
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-
-  {
-    "neovim/nvim-lspconfig",
+ {
+   "neovim/nvim-lspconfig",
     init = function()
-      require("core.utils").lazy_load "nvim-lspconfig"
-    end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
-  },
-
+    require("core.utils").lazy_load "nvim-lspconfig"
+   end,
+   config = function()
+     require "plugins.configs.lspconfig"
+   end,
+   },
   -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
@@ -227,7 +225,8 @@ local default_plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
+    dependencies = { "nvim-treesitter/nvim-treesitter", { "nvim-telescope/telescope-fzf-native.nvim", build = "make", version = "0.1.4", } },
+    version = "0.1.5",
     cmd = "Telescope",
     init = function()
       require("core.utils").load_mappings "telescope"
@@ -280,6 +279,36 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+  -- gitlabDuo
+  {
+  'https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git',
+  -- Activate when a file is created/opened
+  event = { 'BufReadPre', 'BufNewFile' },
+  config = function()
+    require('gitlab').setup({
+      statusline = {
+        enabled = false
+      },
+      code_suggestions = {
+        auto_filetypes = {'javascript', 'typescript'}
+      }
+    })
+  end,
+  -- Activate when a supported filetype is open
+  ft = { 'typescript', 'javascript' },
+  cond = function()
+    -- Only activate if token is present in environment variable.
+    -- Remove this line to use the interactive workflow.
+    return vim.env.GITLAB_TOKEN ~= nil and vim.env.GITLAB_TOKEN ~= ''
+  end,
+  opts = {
+    statusline = {
+      -- Hook into the built-in statusline to indicate the status
+      -- of the GitLab Duo Code Suggestions integration
+      enabled = true,
+    },
+  },
+ }
 }
 
 local config = require("core.utils").load_config()
